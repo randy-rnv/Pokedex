@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="row">
+        <section class="col-md-7">
+            <h2>Pokémons</h2>
+            <a href="/new/pokemon" class="btn btn-primary btn-sm">Ajouter un Pokémon</a>
+        </section>
+        <section class="col-md-5">
+            <h3>Types: <a href="/types/new" class="btn btn-sm btn-primary">+</a></h3>
+            {% for t in types %}
+                <a href="/types/{{ t.name }}" style="background-color: {{ t.color }}; color: white;" class="badge badge-default"> {{ t.name }} </a>
+            {% endfor %}
+        </section>
+    </div>
+    <hr/>
+    {% for p in pokemons %}
+        <div class="row pokemonContent" id="{{ p.name }}">
+            <section class="col-md-10">
+                <div class="card">
+                    <a href="/pokemon/{{ p._id }}/{{ currentPage }}" class="card-header">
+                        <div class="btn">
+                            {{ p.name }}
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        {{ p.description }}
+                    </div>
+                </div>
+            </section>
+            <section class="col-md-2">
+                <img src="/uploads/img/{{ p.picture }}" alt="{{ p.name }}" class="pokemonPicture"/>
+            </section>
+        </div>
+    {% endfor %}
+
+    <div class="col-md-8">
+        <nav aria-label="...">
+            <ul class="pagination pagination-sm">
+            {% for page in range(0, numberOfPage) %}
+                    <li class="page-item"><a class="page-link" href="{{ page + 1 }}">{{ page + 1 }}</a></li>
+            {% endfor %}
+            </ul>
+        </nav>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script src="/assets/pagination.min.js">
+
+{% endblock %}

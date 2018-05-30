@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    
+    <h2>Pokémons de type <span style="color: {{ type.color }};">{{ type.name }}</span></h2>
+    {% for p in pokemons %}
+        <div class="row pokemonContent">
+            <section class="col-md-10">
+                <div class="card">
+                    <a href="/pokemon/{{ p._id }}" class="card-header">
+                        <div class="btn">
+                            {{ p.name }}
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        {{ p.description }}
+                    </div>
+                </div>
+            </section>
+            <section class="col-md-2">
+                <img src="/uploads/img/{{ p.picture }}" alt="{{ p.name }}" class="pokemonPicture"/>
+            </section>
+        </div>
+    {% else %}
+        <h5>Aucun pokémon répertorier pour ce type pour le moment.</h5>
+    {% endfor %}
+
+{% endblock %}

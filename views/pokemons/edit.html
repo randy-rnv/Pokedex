@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <form method="POST" action="{{ endpoint }}" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Nom du pokémon</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ pokemon.name }}"/>
+        </div>
+        <div class="form-group">
+            <label for="number">Numéro</label>
+            <input type="number" id="number" name="number" class="form-control" value="{{ pokemon.number }}"/>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" class="form-control" >{{ pokemon.description }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="file">Image</label>
+            <input type="file" id="file" name="file"/>
+        </div>
+        <div class="form-group">
+        <p>Types:</p>
+            {% for type in types %}
+                <label>
+                    <input type="checkbox" name="types[]" value="{{ type._id }}" {% if type._id in pokemon.types %} checked {% endif %}/>
+                    {{ type.name }}
+                </label>
+            {% endfor %}
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Enregistrer"/>
+        <a href="{{ endpoint }}"><input type="button" class="btn btn-danger" value="Annuler"></a>
+    </form>
+{% endblock %}

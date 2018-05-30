@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="/uploads/img/{{ pokemon.picture }}" alt="{{ pokemon.name }}" class="eachImg" />
+        </div>
+        <div class="col-sm-9">
+            <h2>{{ pokemon.name }} <small>Pokémon n° {{ pokemon.number }}</small></h2> 
+            <a href="/edit/{{ pokemon._id }}" class="btn btn-sm btn-primary">Editer</a>
+            <a href="/delete/{{ pokemon._id }}" class="btn btn-sm btn-danger">Supprimer</a>
+            <hr/>
+            <p class="lead">
+                {{ pokemon.description }}
+            </p>
+
+            <h3>Types:</h3>
+            {% for t in pokemon.types %}
+                <a href="/types/{{ t.name }}" style="background-color: {{ t.color }}; color: white;" class="badge badge-default"> {{ t.name }} </a>
+            {% endfor %}
+            <div class="offset-11">
+                <a href="/{{ lastPage }}?#{{ pokemon.name }}" class="btn btn-sm btn-primary">Retour</a>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %}

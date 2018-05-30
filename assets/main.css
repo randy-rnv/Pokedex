@@ -1,0 +1,13 @@
+.pokemonPicture{
+    width: 55%;
+    height: 75%;
+}
+
+.pokemonContent{
+    margin-bottom: 0.3em;
+}
+
+.eachImg{
+    width: 100%;
+    height: 115%;
+}
